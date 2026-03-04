@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1039f25740a92fc4292bb1d94d07ad19, type: 3}
+  m_Name: VRLM_PoiCRTProjection
+  m_EditorClassIdentifier: 
+  Id: PoiCRTProjection
+  Name: CRT Projection
+  Version: 1.0
+  Author: Foxipso
+  Description: Flattens mesh onto a plane with CRT overlay effects. For TV-head avatars.
+    Derived from cool-retro-term (GPL-3.0).
+  AllowDuplicates: 0
+  ForceDuplicateLogic: 0
+  EnableProperties: []
+  Properties: []
+  ModuleDependencies: []
+  IncompatibleWith: []
+  Templates:
+  - Template: {fileID: -9138733208916815575, guid: c5ccea04ffb08b46bb3ea7e3a813c9f3, type: 3}
+    Keywords:
+    - SPECIALFX_PROPERTIES
+    NeedsVariant: 0
+    Queue: 100
+  - Template: {fileID: -522850328075167077, guid: c5ccea04ffb08b46bb3ea7e3a813c9f3, type: 3}
+    Keywords:
+    - BASE_PASS_KEYWORDS
+    NeedsVariant: 0
+    Queue: 100
+  - Template: {fileID: 8317726046802580178, guid: c5ccea04ffb08b46bb3ea7e3a813c9f3, type: 3}
+    Keywords:
+    - BASE_PROPERTY_VARIABLES
+    NeedsVariant: 0
+    Queue: 100
+  - Template: {fileID: -5184888084044345039, guid: c5ccea04ffb08b46bb3ea7e3a813c9f3, type: 3}
+    Keywords:
+    - VERTEX_INPUT_MODS
+    NeedsVariant: 0
+    Queue: 100
+  - Template: {fileID: 2027540095194097860, guid: c5ccea04ffb08b46bb3ea7e3a813c9f3, type: 3}
+    Keywords:
+    - FRAGMENT_BASE_FUNCTIONS
+    NeedsVariant: 0
+    Queue: 100
+  - Template: {fileID: -4833088577210994822, guid: c5ccea04ffb08b46bb3ea7e3a813c9f3, type: 3}
+    Keywords:
+    - FRAGMENT_BASE_RETURN
+    NeedsVariant: 0
+    Queue: 900
+  Functions: []
+  AdditionalSerializedData: 
