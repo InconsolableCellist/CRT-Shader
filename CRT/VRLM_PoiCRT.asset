@@ -50,5 +50,10 @@ MonoBehaviour:
     - FRAGMENT_BASE_EMISSION
     NeedsVariant: 0
     Queue: 100
+  - Template: {fileID: 379517645468766176, guid: dcb9b9765e22e7a17b4548442967c58c, type: 3}
+    Keywords:
+    - VERTEX_INPUT_MODS
+    NeedsVariant: 0
+    Queue: 100
   Functions: []
   AdditionalSerializedData: 

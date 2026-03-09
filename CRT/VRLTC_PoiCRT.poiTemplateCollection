@@ -4,7 +4,7 @@
 [HideInInspector][ThryToggle(POI_CRT)]_EnableCRT ("Enable CRT", Float) = 0
 
 [HideInInspector] s_start_CRTContent ("Screen Content--{persistent_expand:true,default_expand:true}", Float) = 1
-[ThryWideEnum(Screen Texture, 0, Flipbook (Texture Array), 1, Video (Global Texture), 2)] _CRTSourceMode ("Source Mode", Int) = 0
+[ThryWideEnum(Screen Texture, 0, Flipbook (Texture Array), 1, Video (Global Texture), 2, Mesh Output (Projection), 3)] _CRTSourceMode ("Source Mode", Int) = 0
 [ThryWideEnum(UV0, 0, UV1, 1, UV2, 2, UV3, 3, Panosphere, 4, World Pos, 5, Local Pos, 8, Polar UV, 6, Distorted UV, 7)] _CRTScreenTexUV ("Screen UV Channel", Int) = 0
 [sRGBWarning]_CRTScreenTex ("Screen Texture--{reference_properties:[_CRTScreenTexPan], condition_showS:_CRTSourceMode==0}", 2D) = "black" { }
 [HideInInspector][Vector2]_CRTScreenTexPan ("Panning", Vector) = (0, 0, 0, 0)
@@ -90,6 +90,26 @@ _CRTCurvature ("Curvature--{ condition_showS:_CRTCurvatureEnabled==1}", Range(0,
 [ToggleUI]_CRTCurvatureClip ("Clip Outside Screen--{ condition_showS:_CRTCurvatureEnabled==1}", Float) = 1
 [HideInInspector] s_end_CRTCurvature ("Screen Curvature", Float) = 0
 
+[HideInInspector] s_start_CRTProjection ("Projection--{reference_property:_CRTProjEnabled,persistent_expand:true,default_expand:false}", Float) = 0
+[ToggleUI]_CRTProjEnabled ("Enable Projection", Float) = 0
+[ThryWideEnum(X, 0, Y, 1, Z, 2)] _CRTProjAxis ("Flatten Axis--{ condition_showS:_CRTProjEnabled==1}", Int) = 2
+_CRTProjPlanePos ("Plane Position--{ condition_showS:_CRTProjEnabled==1}", Float) = 0
+[Vector2]_CRTProjScale ("Scale--{ condition_showS:_CRTProjEnabled==1}", Vector) = (1, 1, 0, 0)
+[Vector2]_CRTProjOffset ("Offset--{ condition_showS:_CRTProjEnabled==1}", Vector) = (0, 0, 0, 0)
+[Vector2]_CRTProjPivot ("Pivot Point--{ condition_showS:_CRTProjEnabled==1}", Vector) = (0, 0, 0, 0)
+_CRTProjDepthOffset ("Depth Offset--{ condition_showS:_CRTProjEnabled==1}", Float) = 0.001
+_CRTProjDepthPreserve ("Depth Preserve--{ condition_showS:_CRTProjEnabled==1}", Range(0, 0.1)) = 0.01
+_CRTProjFlattenAmount ("Flatten Amount--{ condition_showS:_CRTProjEnabled==1}", Range(0, 1)) = 1.0
+[ToggleUI]_CRTProjFlattenNormals ("Flatten Normals--{ condition_showS:_CRTProjEnabled==1}", Float) = 0
+[Vector2]_CRTProjScreenSize ("Screen Size--{ condition_showS:_CRTProjEnabled==1}", Vector) = (1, 1, 0, 0)
+[ToggleUI]_CRTProjClipToScreen ("Clip to Screen Bounds--{ condition_showS:_CRTProjEnabled==1}", Float) = 1
+// Tip: If Z-fighting occurs, set Rendering > Offset Factor to -1 and Offset Units to -1
+[HideInInspector] s_start_CRTProjCurvature ("Dome Curvature--{reference_property:_CRTProjCurvatureEnabled,persistent_expand:true,default_expand:false, condition_showS:_CRTProjEnabled==1}", Float) = 0
+[ToggleUI]_CRTProjCurvatureEnabled ("Enable Dome Curvature--{ condition_showS:_CRTProjEnabled==1}", Float) = 0
+_CRTProjCurvature ("Curvature--{ condition_showS:(_CRTProjEnabled==1 && _CRTProjCurvatureEnabled==1)}", Range(-5, 5)) = 1.0
+[HideInInspector] s_end_CRTProjCurvature ("Dome Curvature", Float) = 0
+[HideInInspector] s_end_CRTProjection ("Projection", Float) = 0
+
 [HideInInspector] s_start_CRTScanlines ("Scanlines--{persistent_expand:true,default_expand:true}", Float) = 1
 [ThryWideEnum(None, 0, Scanlines, 1, Pixel Grid, 2, Subpixel, 3)] _CRTRasterMode ("Rasterization Mode", Int) = 1
 _CRTRasterIntensity ("Intensity--{ condition_showS:_CRTRasterMode!=0}", Range(0, 1)) = 0.5
@@ -128,6 +148,14 @@ _CRTFlickerIntensity ("Intensity--{ condition_showS:_CRTFlickerEnabled==1}", Ran
 [ToggleUI]_CRTHSyncEnabled ("Enable H-Sync Distortion", Float) = 0
 _CRTHSync ("Intensity--{ condition_showS:_CRTHSyncEnabled==1}", Range(0, 1)) = 0.08
 [HideInInspector] s_end_CRTHSync ("Horizontal Sync", Float) = 0
+
+[HideInInspector] s_start_CRTDegauss ("Degauss--{reference_property:_CRTDegaussEnabled,persistent_expand:true,default_expand:false}", Float) = 0
+[ToggleUI]_CRTDegaussEnabled ("Enable Degauss", Float) = 0
+_CRTDegauss ("Intensity--{ condition_showS:_CRTDegaussEnabled==1}", Range(0, 1)) = 0
+_CRTDegaussSpeed ("Swirl Speed--{ condition_showS:_CRTDegaussEnabled==1}", Float) = 3.0
+_CRTDegaussWarp ("Geometric Warp--{ condition_showS:_CRTDegaussEnabled==1}", Range(0, 1)) = 0.5
+_CRTDegaussColorSep ("Color Separation--{ condition_showS:_CRTDegaussEnabled==1}", Range(0, 1)) = 0.5
+[HideInInspector] s_end_CRTDegauss ("Degauss", Float) = 0
 
 [HideInInspector] s_start_CRTRGBShift ("RGB Shift--{reference_property:_CRTRGBShiftEnabled,persistent_expand:true,default_expand:false}", Float) = 0
 [ToggleUI]_CRTRGBShiftEnabled ("Enable RGB Shift", Float) = 0
@@ -298,6 +326,12 @@ _CRTALHueShiftAmount ("Hue Shift Amount--{ condition_showS:_CRTALHueShift==1}", 
     float _CRTHSyncEnabled;
     float _CRTHSync;
 
+    float _CRTDegaussEnabled;
+    float _CRTDegauss;
+    float _CRTDegaussSpeed;
+    float _CRTDegaussWarp;
+    float _CRTDegaussColorSep;
+
     float _CRTRGBShiftEnabled;
     float _CRTRGBShift;
 
@@ -321,6 +355,66 @@ _CRTALHueShiftAmount ("Hue Shift Amount--{ condition_showS:_CRTALHueShift==1}", 
     float _CRTALHueShift;
     float _CRTALHueBand;
     float _CRTALHueShiftAmount;
+
+    float _CRTProjEnabled;
+    float _CRTProjAxis;
+    float _CRTProjPlanePos;
+    float2 _CRTProjScale;
+    float2 _CRTProjOffset;
+    float2 _CRTProjPivot;
+    float _CRTProjDepthOffset;
+    float _CRTProjDepthPreserve;
+    float _CRTProjFlattenAmount;
+    float _CRTProjFlattenNormals;
+    float2 _CRTProjScreenSize;
+    float _CRTProjClipToScreen;
+    float _CRTProjCurvatureEnabled;
+    float _CRTProjCurvature;
+#endif
+//endex
+
+#T#CRTVertexMods
+//ifex _EnableCRT==0
+#ifdef POI_CRT
+if (_CRTProjEnabled > 0)
+{
+    float3 projPos = v.vertex.xyz;
+    float2 screenPos;
+    float depthVal;
+
+    if (_CRTProjAxis < 1)      { screenPos = projPos.yz; depthVal = projPos.x; }
+    else if (_CRTProjAxis < 2) { screenPos = projPos.xz; depthVal = projPos.y; }
+    else                       { screenPos = projPos.xy; depthVal = projPos.z; }
+
+    screenPos = (screenPos - _CRTProjPivot) * _CRTProjScale + _CRTProjPivot + _CRTProjOffset;
+    float originalDepth = depthVal;
+    depthVal = _CRTProjPlanePos;
+
+    if (_CRTProjCurvatureEnabled > 0)
+    {
+        float2 cc = screenPos - _CRTProjPivot - _CRTProjOffset;
+        depthVal += dot(cc, cc) * _CRTProjCurvature;
+    }
+
+    depthVal += _CRTProjDepthOffset;
+
+    // Preserve a fraction of original depth to maintain relative ordering
+    // (prevents z-fighting between face, teeth, tongue, etc.)
+    depthVal += originalDepth * _CRTProjDepthPreserve;
+
+    if (_CRTProjAxis < 1)      { projPos.yz = screenPos; projPos.x = depthVal; }
+    else if (_CRTProjAxis < 2) { projPos.xz = screenPos; projPos.y = depthVal; }
+    else                       { projPos.xy = screenPos; projPos.z = depthVal; }
+
+    v.vertex.xyz = lerp(v.vertex.xyz, projPos, _CRTProjFlattenAmount);
+
+    if (_CRTProjFlattenNormals > 0 && _CRTProjFlattenAmount > 0)
+    {
+        if (_CRTProjAxis < 1)      v.normal = float3(-1, 0, 0);
+        else if (_CRTProjAxis < 2) v.normal = float3(0, -1, 0);
+        else                       v.normal = float3(0, 0, -1);
+    }
+}
 #endif
 //endex
 
@@ -697,7 +791,29 @@ _CRTALHueShiftAmount ("Hue Shift Amount--{ condition_showS:_CRTALHueShift==1}", 
             }
         #endif
         // Video mode (2) uses _CRTScreenTex_ST as its tiling/offset
-        float2 screenUV = poiUV(poiMesh.uv[_CRTScreenTexUV], sourceTexST);
+        float2 screenUV;
+        if (_CRTProjEnabled > 0)
+        {
+            // Compute screen UV from projected localPos
+            float2 screenPos;
+            if (_CRTProjAxis < 1)      screenPos = poiMesh.localPos.yz;
+            else if (_CRTProjAxis < 2) screenPos = poiMesh.localPos.xz;
+            else                       screenPos = poiMesh.localPos.xy;
+
+            // Undo scale/offset to get raw mesh position, then normalize to [0,1]
+            screenUV = (screenPos - _CRTProjPivot - _CRTProjOffset) / (_CRTProjScale * _CRTProjScreenSize) + 0.5;
+
+            // Discard fragments outside the screen area (ears, chin, etc.)
+            if (_CRTProjClipToScreen > 0)
+            {
+                float2 uvClip = step(float2(0.0, 0.0), screenUV) * step(screenUV, float2(1.0, 1.0));
+                clip(uvClip.x * uvClip.y - 0.5);
+            }
+        }
+        else
+        {
+            screenUV = poiUV(poiMesh.uv[_CRTScreenTexUV], sourceTexST);
+        }
         float2 undistortedUV = screenUV;
 
         // =====================================================================
@@ -743,6 +859,52 @@ _CRTALHueShiftAmount ("Hue Shift Amount--{ condition_showS:_CRTALHueShift==1}", 
         }
 
         // =====================================================================
+        // 4b. Apply degauss effect (swirling color separation + geometric warp)
+        // =====================================================================
+        float3 degaussOffsetR = float3(0, 0, 0);
+        float3 degaussOffsetG = float3(0, 0, 0);
+        float3 degaussOffsetB = float3(0, 0, 0);
+        if (_CRTDegaussEnabled > 0 && _CRTDegauss > 0.001)
+        {
+            float dg = _CRTDegauss * _CRTDegauss; // quadratic falloff for more natural decay
+            float t = _Time.y * _CRTDegaussSpeed;
+
+            // Wandering swirl center: slow irregular orbit around screen center
+            float2 swirlCenter = 0.5 + float2(
+                sin(t * 0.31) * 0.15 + sin(t * 0.73) * 0.08,
+                cos(t * 0.43) * 0.12 + cos(t * 0.97) * 0.06
+            ) * dg;
+            float2 cuv = screenUV - swirlCenter;
+            float r = length(cuv);
+            float angle = atan2(cuv.y, cuv.x);
+
+            // Geometric warp: sinusoidal wobble that's stronger at edges
+            float warpAmount = dg * _CRTDegaussWarp * 0.08;
+            float2 warp = float2(
+                sin(angle * 3.0 + t * 2.7 + r * 12.0) * r,
+                cos(angle * 2.0 + t * 3.1 + r * 10.0) * r
+            ) * warpAmount;
+            screenUV += warp;
+
+            // Per-channel UV offsets: swirling color purity errors
+            // Each channel gets a different phase, creating the characteristic
+            // R/G/B blotch pattern of a degaussing CRT
+            float sep = dg * _CRTDegaussColorSep * 0.04;
+            degaussOffsetR = float3(
+                sin(angle * 2.0 + t * 1.9) * sep * (0.5 + r),
+                cos(angle * 3.0 + t * 2.3) * sep * (0.5 + r),
+                0);
+            degaussOffsetG = float3(
+                sin(angle * 2.0 + t * 1.9 + 2.094) * sep * (0.5 + r),
+                cos(angle * 3.0 + t * 2.3 + 2.094) * sep * (0.5 + r),
+                0);
+            degaussOffsetB = float3(
+                sin(angle * 2.0 + t * 1.9 + 4.189) * sep * (0.5 + r),
+                cos(angle * 3.0 + t * 2.3 + 4.189) * sep * (0.5 + r),
+                0);
+        }
+
+        // =====================================================================
         // 5. Apply h-sync distortion
         // Derived from cool-retro-term terminal_dynamic.frag:141-142
         // =====================================================================
@@ -779,8 +941,15 @@ _CRTALHueShiftAmount ("Hue Shift Amount--{ condition_showS:_CRTALHueShift==1}", 
         float3 screenColor = float3(0.0, 0.0, 0.0);
         float2 sampleUV = screenUV;
 
+        // --- Mesh Output source (projection mode) ---
+        if (_CRTSourceMode > 2)
+        {
+            // Use the mesh's own rendered output as CRT content
+            screenColor = poiFragData.finalColor + poiFragData.emission * poiMods.globalEmission;
+            poiFragData.emission = float3(0, 0, 0);
+        }
         // --- Video source (global texture from VRChat video players) ---
-        if (_CRTSourceMode > 1)
+        else if (_CRTSourceMode > 1)
         {
             sampleUV = screenUV;
 
@@ -968,6 +1137,39 @@ _CRTALHueShiftAmount ("Hue Shift Amount--{ condition_showS:_CRTALHueShift==1}", 
         // 8b. Screen gamma correction (brightens dark scenes before edge detection)
         // =====================================================================
         screenColor = pow(max(screenColor, 0.0), _CRTScreenGamma);
+
+        // =====================================================================
+        // 8c. Apply degauss color purity error (shadow mask misalignment simulation)
+        // =====================================================================
+        if (_CRTDegaussEnabled > 0 && _CRTDegauss > 0.001)
+        {
+            // On a real CRT, degauss errors deflect electron beams so they hit
+            // the wrong phosphors. This creates colored blotches: each channel's
+            // gain varies spatially in a swirling pattern. We model this as
+            // per-channel gain modulation (dominant effect) plus edge fringing
+            // via screen-space derivatives (secondary effect).
+
+            // Primary: spatially-varying channel gain (colored blotches)
+            // The offsets already encode per-channel swirl patterns with 120° separation.
+            // Map offset magnitude to a gain deviation centered on 1.0.
+            float gainScale = _CRTVirtualResolution.x * 2.5;
+            float3 gain = float3(
+                1.0 + (degaussOffsetR.x + degaussOffsetR.y) * gainScale,
+                1.0 + (degaussOffsetG.x + degaussOffsetG.y) * gainScale,
+                1.0 + (degaussOffsetB.x + degaussOffsetB.y) * gainScale
+            );
+            screenColor *= gain;
+
+            // Secondary: edge color fringing via screen-space derivatives
+            float3 dcdx = ddx(screenColor);
+            float3 dcdy = ddy(screenColor);
+            float fringeScale = _CRTVirtualResolution.x;
+            screenColor.r += dot(degaussOffsetR.xy, float2(dcdx.r, dcdy.r)) * fringeScale;
+            screenColor.g += dot(degaussOffsetG.xy, float2(dcdx.g, dcdy.g)) * fringeScale;
+            screenColor.b += dot(degaussOffsetB.xy, float2(dcdx.b, dcdy.b)) * fringeScale;
+
+            screenColor = max(screenColor, 0.0);
+        }
 
         // =====================================================================
         // 9a. Edge detection (before overlay — wireframe map + clean overlay)
@@ -1178,8 +1380,15 @@ _CRTALHueShiftAmount ("Hue Shift Amount--{ condition_showS:_CRTALHueShift==1}", 
         // Apply emission intensity and mask
         crtOutput *= _CRTEmissionIntensity * crtMask;
 
-        // Output as emission
-        poiFragData.emission += crtOutput;
+        // Output as emission or replace finalColor for Mesh Output mode
+        if (_CRTSourceMode > 2)
+        {
+            poiFragData.finalColor = crtOutput;
+        }
+        else
+        {
+            poiFragData.emission += crtOutput;
+        }
     }
 #endif
 //endex
