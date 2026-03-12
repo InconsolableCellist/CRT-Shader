@@ -54,5 +54,5 @@ MonoBehaviour:
   AdditionalModules: []
   LockBaseModules: 0
   LastGeneratedShaders:
-  - {fileID: 4800000, guid: 372158f0223096337ae6e0fa441301b9, type: 3}
+  - {fileID: 4800000, guid: 354fbabc82387bb67b1865ce17c382d2, type: 3}
   AdditionalSerializedData: 

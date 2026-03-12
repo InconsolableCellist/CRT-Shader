@@ -234,9 +234,10 @@ _CRTALHueShiftAmount ("Hue Shift Amount--{ condition_showS:_CRTALHueShift==1}", 
     float2 _CRTFlipbookCrossfadeRange;
 
     // _Udon_VideoTex is declared by Poiyomi core when unlocked.
-    // When locked (optimized), Poiyomi strips it if POI_VIDEO_EFFECTS is off,
-    // so we declare it ourselves only in that case.
-    #ifdef OPTIMIZER_ENABLED
+    // When locked (optimized), Poiyomi strips it unless Decals or Video Effects
+    // are enabled. The Decals module declares it unconditionally when any decal
+    // is on, so we only declare it when locked AND no decal module is active.
+    #if defined(OPTIMIZER_ENABLED) && !defined(GEOM_TYPE_BRANCH) && !defined(GEOM_TYPE_BRANCH_DETAIL) && !defined(GEOM_TYPE_FROND) && !defined(DEPTH_OF_FIELD_COC_VIEW)
         sampler2D _Udon_VideoTex;
         float4 _Udon_VideoTex_TexelSize;
     #endif
